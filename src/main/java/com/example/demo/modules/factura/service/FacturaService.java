@@ -1,7 +1,8 @@
-package com.example.demo.factura.service;
+package com.example.demo.modules.factura.service;
 
-import com.example.demo.factura.events.FacturaEvent;
-import com.example.demo.factura.model.FacturaModel;
+import com.example.demo.modules.factura.events.FacturaEvent;
+import com.example.demo.modules.factura.model.FacturaModel;
+import com.example.demo.modules.factura.model.dto.FacturaGrabDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -11,8 +12,8 @@ import org.springframework.stereotype.Service;
 public class FacturaService {
     private final ApplicationEventPublisher publisher;
 
-    public String save(FacturaModel factura) {
+    public String save(FacturaGrabDTO factura) {
         publisher.publishEvent(new FacturaEvent(this, factura));
-        return factura.getNumero();
+        return factura.numero();
     }
 }
